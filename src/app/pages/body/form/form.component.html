@@ -1,0 +1,45 @@
+<div class="container bg-dark px-4 py-1 rounded-2">
+<form [formGroup]="registerForm" class="mt-5 mb-5">
+    <div class="mb-3">
+      <label for="firstName" class="form-label  text-light">First Name</label>
+      <input type="text"  class="form-control" id="firstName" name="firstName"  placeholder="Your Name..." formControlName="firstname"/>
+      <div class="form-text text-danger" *ngIf="FirstName.errors?.['required'] && (FirstName.touched || FirstName.dirty)">
+        first Name is required.
+      </div>
+      <div class="form-text text-danger" *ngIf="FirstName.errors?.['minlength']">
+        First name is too short
+      </div>
+     
+    </div>
+    
+    <div class="mb-3">
+      <label for="lastName" class="form-label text-light">Last Name</label>
+      <input type="text"  class="form-control" id="lastName" name="lastName"  placeholder="Your Last Name..." formControlName="lastname">
+      <div class="form-text text-danger" *ngIf="LastName.errors?.['required'] && (LastName.touched || LastName.dirty)">
+        last Name is required.
+      </div>
+    </div>
+    <div class="mb-3">
+        <label for="coutry" class="form-label text-light">Country</label>
+        <select id="country" class="form-select border border-primary border-" aria-label="Default select example" name="country" formControlName="country">
+            <!-- <option selected>Open this select menu</option> -->
+            <option value="1">India</option>
+            <option value="2">Australia</option>
+            <option value="3">Canada</option>
+            <option value="3">USA</option>
+            <option value="3">Russia</option>
+            <option value="3">Iran</option>
+            <option value="3">Sri Lanka</option>
+          </select>
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label text-light" for="exampleCheck1">Check me out</label>
+      <div class="form-text text-danger">
+        pls check the box
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="callSomeLogic()" [disabled]="registerForm.invalid" >Submit</button>
+  </form>
+</div>
+  
