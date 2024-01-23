@@ -22,24 +22,25 @@
     <div class="mb-3">
         <label for="coutry" class="form-label text-light">Country</label>
         <select id="country" class="form-select border border-primary border-" aria-label="Default select example" name="country" formControlName="country">
-            <!-- <option selected>Open this select menu</option> -->
-            <option value="1">India</option>
-            <option value="2">Australia</option>
-            <option value="3">Canada</option>
-            <option value="3">USA</option>
-            <option value="3">Russia</option>
-            <option value="3">Iran</option>
-            <option value="3">Sri Lanka</option>
+          <option value="">Select Country</option>
+            <option value="india">India</option>
+            <option value="australia">Australia</option>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+            <option value="russia">Russia</option>
+            <option value="iran">Iran</option>
+            <option value="sri lanka">Sri Lanka</option>
           </select>
+          <div class="form-text text-danger" *ngIf="country.errors?.['required'] && (country.touched || country.dirty)">
+            Country is required.
+          </div>
     </div>
     <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <input type="checkbox"  formControlName="checkOut" class="form-check-input" id="exampleCheck1" required  >
       <label class="form-check-label text-light" for="exampleCheck1">Check me out</label>
-      <div class="form-text text-danger">
-        pls check the box
-      </div>
+     
     </div>
-    <button type="submit" class="btn btn-primary" (click)="callSomeLogic()" [disabled]="registerForm.invalid" >Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="callSomeLogic()"  [disabled]="registerForm.invalid || !CheckOut.value" >Submit</button>
   </form>
 </div>
   
