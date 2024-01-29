@@ -1,46 +1,151 @@
 <div class="container bg-dark px-4 py-1 rounded-2">
-<form [formGroup]="registerForm" class="mt-5 mb-5">
+  <form [formGroup]="registerForm" class="mt-5 mb-5" method="post" action="http://localhost:8080/register">
     <div class="mb-3">
-      <label for="firstName" class="form-label  text-light">First Name</label>
-      <input type="text"  class="form-control" id="firstName" name="firstName"  placeholder="Your Name..." formControlName="firstname"/>
-      <div class="form-text text-danger" *ngIf="FirstName.errors?.['required'] && (FirstName.touched || FirstName.dirty)">
+      <label for="firstName" class="form-label text-light">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        name="firstName"
+        placeholder="Your Name..."
+        formControlName="firstname"
+      />
+      <div
+        class="form-text text-danger"
+        *ngIf="FirstName.errors?.['required'] && (FirstName.touched || FirstName.dirty)"
+      >
         first Name is required.
       </div>
-      <div class="form-text text-danger" *ngIf="FirstName.errors?.['minlength']">
+      <div
+        class="form-text text-danger"
+        *ngIf="FirstName.errors?.['minlength']"
+      >
         First name is too short
       </div>
-     
+      <div class="form-text text-danger" *ngIf="FirstName.errors?.['pattern']">
+        First name should start with alphabet
+      </div>
     </div>
-    
+
     <div class="mb-3">
       <label for="lastName" class="form-label text-light">Last Name</label>
-      <input type="text"  class="form-control" id="lastName" name="lastName"  placeholder="Your Last Name..." formControlName="lastname">
-      <div class="form-text text-danger" *ngIf="LastName.errors?.['required'] && (LastName.touched || LastName.dirty)">
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        name="lastName"
+        placeholder="Your Last Name..."
+        formControlName="lastname"
+      />
+      <div
+        class="form-text text-danger"
+        *ngIf="LastName.errors?.['required'] && (LastName.touched || LastName.dirty)"
+      >
         last Name is required.
+      </div>
+      <div class="form-text text-danger" *ngIf="LastName.errors?.['pattern']">
+        Last name should start with alphabet
       </div>
     </div>
     <div class="mb-3">
-        <label for="coutry" class="form-label text-light">Country</label>
-        <select id="country" class="form-select border border-primary border-" aria-label="Default select example" name="country" formControlName="country">
-          <option value="">Select Country</option>
-            <option value="india">India</option>
-            <option value="australia">Australia</option>
-            <option value="canada">Canada</option>
-            <option value="usa">USA</option>
-            <option value="russia">Russia</option>
-            <option value="iran">Iran</option>
-            <option value="sri lanka">Sri Lanka</option>
+      <label for="emailid" class="form-label text-light">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="emailid"
+        aria-describedby="emailHelp"
+        formControlName="email"
+      />
+      <div
+        class="form-text text-danger"
+        *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)"
+      >
+        Email Id is required.
+      </div>
+      <div class="form-text text-danger" *ngIf="Email.errors?.['email']">
+        Email is invalid
+      </div>
+      <!-- <div id="emailHelp" class="form-text text-light">We'll never share your email with anyone else.</div> -->
+    </div>
+    <div class="mb-3">
+      <label for="coutry" class="form-label text-light">Country</label>
+      <select
+        id="country"
+        class="form-select border border-primary border-"
+        aria-label="Default select example"
+        name="country"
+        formControlName="country"
+      >
+        <option value="">Select Country</option>
+        <option value="india">India</option>
+        <option value="+61">Australia</option>
+        <option value="+1">Canada</option>
+        <option value="+1">USA</option>
+        <option value="+7">Russia</option>
+        <option value="+98">Iran</option>
+        <option value="+44">United kingdom</option>
+      </select>
+      <div
+        class="form-text text-danger"
+        *ngIf="country.errors?.['required'] && (country.touched || country.dirty)"
+      >
+        Country is required.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="mobile" class="form-label text-light">Mobile Number</label>
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">
+          <select class="form-select code" formControlName="country">
+            <option value="+1" >+1 (United States)</option>
+            <!-- Add more country codes as needed -->
+            <option value="+91">+91 <img src="/src/assets/images/india-flag.png" alt="" width="10px" height="10px" > </option>
+            <option value="+61">+61 (Australia)</option>
+            <option value="+1">+1 (Canada)</option>
+        <option value="+7">+7 (Russia)</option>
+        <option value="+98">+98 (Iran)</option>
+            <option value="+44">+44 (United Kingdom)</option>
+            <!-- Add more options as needed -->
           </select>
-          <div class="form-text text-danger" *ngIf="country.errors?.['required'] && (country.touched || country.dirty)">
-            Country is required.
-          </div>
+        </span>
+        <input type="text" class="form-control" id="mobile" formControlName="mobileno">
+      </div>
+      <div
+        class="form-text text-danger"
+        *ngIf="MobileNo.errors?.['required'] && (MobileNo.touched || MobileNo.dirty)"
+      >
+        mobile no is required
+      </div>
+      <div class="form-text text-danger" *ngIf="MobileNo.errors?.['pattern']">
+        Number is invalid
+      </div>
+      <!-- <div class="form-text text-danger" *ngIf="MobileNo.errors?.['minlength']">
+        Number is too short
+      </div>
+      <div class="form-text text-danger" *ngIf="MobileNo.errors?.['maxlength']">
+        Number is too long
+      </div> -->
     </div>
+
     <div class="mb-3 form-check">
-      <input type="checkbox"  formControlName="checkOut" class="form-check-input" id="exampleCheck1" required  >
-      <label class="form-check-label text-light" for="exampleCheck1">Check me out</label>
-     
+      <input
+        type="checkbox"
+        formControlName="checkOut"
+        class="form-check-input"
+        id="exampleCheck1"
+        required
+      />
+      <label class="form-check-label text-light" for="exampleCheck1"
+        >Check me out</label
+      >
     </div>
-    <button type="submit" class="btn btn-primary" (click)="callSomeLogic()"  [disabled]="registerForm.invalid || !CheckOut.value" >Submit</button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      (click)="callSomeLogic()"
+      [disabled]="registerForm.invalid || !CheckOut.value"
+    >
+      Submit
+    </button>
   </form>
 </div>
-  
